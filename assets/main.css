@@ -1,0 +1,10 @@
+/* assets/css/main.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Styles globaux personnalisés si nécessaire */
+body {
+  font-family: 'Poppins', sans-serif; /* Assurez-vous que Poppins est bien importé via Google Fonts si vous l'utilisez */
+  @apply bg-gray-50 text-gray-800; /* Couleurs de texte et de fond par défaut */
+}
