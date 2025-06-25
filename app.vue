@@ -1,27 +1,22 @@
-<!-- app.vue -->
 <template>
   <div class="min-h-screen flex flex-col relative">
-    <!-- En-tête de l'application avec menu hamburger -->
     <AppHeader />
     
-    <!-- Conteneur pour le contenu principal avec fond d'écran dynamique -->
     <div 
       class="flex-grow main-content-wrapper" 
       :style="backgroundStyle"
     >
-      <main class="relative z-10"> <!-- z-10 pour que le contenu soit au-dessus du fond -->
-        <!-- Zone pour le contenu spécifique de chaque page Nuxt -->
-        <NuxtPage /> 
+      <main class="relative z-10"> <NuxtPage /> 
 
-        <!-- Section spécifique pour les abonnements streaming -->
         <section id="streaming-subscriptions" class="py-16 bg-lightblue">
           <div class="container mx-auto px-4">
-            <h2 class="text-4xl font-bold text-center text-darkblue mb-12">Nos Abonnements Streaming</h2>
+            <h2 class="text-xl sm:text-2xl md:text-4xl font-extrabold text-center text-gray-500 mb-12 drop-shadow-lg uppercase tracking-wider bg-gradient-to-r from-yellow-300 via-yellow-400 to-yellow-500 block mx-auto py-4 rounded-lg shadow-lg border-4 border-yellow-500 whitespace-nowrap px-2 sm:px-4 md:px-8">
+              Nos Abonnements Streaming 
+            </h2>
             <StreamingPlatformCarousel />
           </div>
         </section>
 
-        <!-- Placeholder pour d'autres sections futures (services, à propos, etc.) -->
         <section id="it-services" class="py-16 bg-white">
           <div class="container mx-auto px-4">
             <h2 class="text-4xl font-bold text-center text-darkblue mb-8">Nos Services Informatiques</h2>
@@ -42,10 +37,9 @@
       </main>
     </div>
 
-    <!-- Pied de page simple (peut être un composant séparé plus tard) -->
     <footer class="bg-darkblue text-white py-6 text-center relative z-10">
       <div class="container mx-auto">
-        <p>&copy; {{ new Date().getFullYear() }}    OVIS237. Tous droits réservés.</p>
+        <p>&copy; {{ new Date().getFullYear() }}     OVIS237. Tous droits réservés.</p>
       </div>
     </footer>
   </div>
@@ -103,8 +97,8 @@ html, body {
 /* Les sections doivent avoir un fond semi-transparent si elles ne sont pas opaques pour voir l'image derrière */
 #streaming-subscriptions, #it-services, #about-us {
   /* Si vous voulez que l'image de fond soit visible derrière ces sections,
-     rendez leur fond transparent ou semi-transparent.
-     Sinon, elles couvriront l'image de fond. */
+   * rendez leur fond transparent ou semi-transparent.
+   * Sinon, elles couvriront l'image de fond. */
   /* background-color: rgba(255, 255, 255, 0.8); par exemple */
 }
 </style>

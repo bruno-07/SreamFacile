@@ -16,7 +16,7 @@ export default defineNuxtConfig({
   // Autres configurations globales si nécessaire
   app: {
     head: {
-      title: 'ITECH SERVICE | Abonnements & Services IT', // Titre par défaut de votre application
+      title: 'Ovis', // Titre par défaut de votre application
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
