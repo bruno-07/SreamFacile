@@ -1,10 +1,14 @@
-/* assets/css/main.css */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Styles globaux personnalisés si nécessaire */
+/* Global styles */
 body {
-  font-family: 'Poppins', sans-serif; /* Assurez-vous que Poppins est bien importé via Google Fonts si vous l'utilisez */
-  @apply bg-gray-50 text-gray-800; /* Couleurs de texte et de fond par défaut */
+  font-family: 'Inter', sans-serif; /* Applies Inter to the whole body */
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Montserrat', sans-serif; /* Applies Montserrat to headings */
 }

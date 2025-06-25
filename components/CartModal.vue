@@ -19,23 +19,23 @@
 
       <div v-else>
         <ul>
-          <li v-for="item in cartStore.items" :key="item.platformId" class="flex flex-col sm:flex-row items-center justify-between py-3 border-b dark:border-gray-700 last:border-b-0">
+          <li v-for="item in cartStore.items" :key="item.id" class="flex flex-col sm:flex-row items-center justify-between py-3 border-b dark:border-gray-700 last:border-b-0">
             <div class="flex-grow text-center sm:text-left mb-2 sm:mb-0">
               <p class="font-semibold text-lg text-darkblue dark:text-white">{{ item.name }} {{ item.animalEmoji }}</p>
               <p class="text-gray-600 dark:text-gray-300">{{ item.basePrice }} FCFA/mois</p>
             </div>
             <div class="flex items-center space-x-2">
-              <label for="months-{{ item.platformId }}" class="text-gray-700 dark:text-gray-300 sr-only sm:not-sr-only">Durée :</label>
+              <label :for="'months-' + item.id" class="text-gray-700 dark:text-gray-300 sr-only sm:not-sr-only">Durée :</label>
               <select
-                id="months-{{ item.platformId }}"
+                :id="'months-' + item.id"
                 :value="item.months"
-                @change="event => updateMonths(item.platformId, parseInt(event.target.value))"
+                @change="event => updateMonths(item.id, parseInt(event.target.value))"
                 class="p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 text-base dark:bg-gray-700 dark:border-gray-600 dark:text-white"
               >
                 <option v-for="n in 12" :key="n" :value="n">{{ n }} mois</option>
               </select>
-              <span class="font-bold text-darkblue dark:text-white min-w-[80px] text-right">{{ item.basePrice * item.months }} FCFA</span>
-              <button @click="removeItem(item.platformId)" class="ml-2 p-2 text-red-600 hover:bg-red-100 rounded-full dark:hover:bg-red-900 dark:text-red-400 focus:outline-none">
+              <span class="font-bold text-darkblue dark:text-white min-w-[80px] text-right">{{ item.totalPrice }} FCFA</span>
+              <button @click="removeItem(item.id)" class="ml-2 p-2 text-red-600 hover:bg-red-100 rounded-full dark:hover:bg-red-900 dark:text-red-400 focus:outline-none">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
                 </svg>
@@ -64,10 +64,12 @@
 
 <script setup>
 import { ref, computed } from 'vue';
-import { useCartStore } from '@/stores/cart'; // Import du store Panier
+import { useCartStore } from '@/stores/cart';
+import { useNotificationStore } from '@/stores/notification'; // NEW: Import notification store
 
 const cartStore = useCartStore();
-const isOpen = ref(false); // État de visibilité de la modale
+const notificationStore = useNotificationStore(); // NEW: Initialize notification store
+const isOpen = ref(false);
 
 const closeModal = () => {
   isOpen.value = false;
@@ -77,26 +79,25 @@ const openModal = () => {
   isOpen.value = true;
 };
 
-// Fonction pour mettre à jour la durée d'un article dans le panier
-const updateMonths = (platformId, newMonths) => {
-  cartStore.updateItemMonths(platformId, newMonths);
+const updateMonths = (itemId, newMonths) => {
+  cartStore.updateItemMonths(itemId, newMonths);
+  // NEW: Notify on update
+  notificationStore.showNotification('Durée de l\'abonnement mise à jour !', 'success');
 };
 
-// Fonction pour supprimer un article du panier
-const removeItem = (platformId) => {
-  if (confirm("Voulez-vous vraiment supprimer cet abonnement du panier ?")) {
-    cartStore.removeFromCart(platformId);
-  }
+const removeItem = (itemId) => {
+  // REMOVED: The `confirm` dialog
+  cartStore.removeItem(itemId);
+  // NEW: Notify on removal
+  notificationStore.showNotification('Abonnement supprimé du panier.', 'info');
 };
 
-// Lien WhatsApp calculé
 const whatsappLink = computed(() => {
-  const phoneNumber = '237699115614'; // Votre numéro de téléphone
-  const message = cartStore.getWhatsAppMessage;
+  const phoneNumber = '237699115314';
+  const message = encodeURIComponent(cartStore.getWhatsAppMessage);
   return `https://wa.me/${phoneNumber}?text=${message}`;
 });
 
-// Exposer la fonction openModal pour que le composant parent puisse l'appeler
 defineExpose({
   openModal
 });
