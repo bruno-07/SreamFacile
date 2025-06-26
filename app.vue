@@ -60,7 +60,7 @@
 
             <!-- Confiance -->
             <div class="mb-12">
-              <h2 class="text-2xl font-semibold text-blue-600 mb-2">🤝 Pourquoi nous faire confiance ?</h2>
+              <h2 class="text-2xl font-semibold text-blue-600 mb-2">🤝 Pourquoi nous faire confiance?</h2>
               <ul class="grid sm:grid-cols-2 gap-4 text-gray-700">
                 <li class="bg-blue-50 p-4 rounded-lg shadow-sm">
                   ✅ <strong>Transparence totale</strong><br />Aucun frais caché, aucune surprise
