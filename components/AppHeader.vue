@@ -1,8 +1,8 @@
 <template>
-  <header class="bg-white shadow-md py-4 sticky top-0 z-50 dark:bg-gray-800 dark:shadow-lg transition-colors duration-300">
+  <header class="bg-gray-500  shadow-md py-4 sticky top-0 z-50 dark:shadow-lg transition-colors duration-300">
     <nav class="container mx-auto flex justify-between items-center px-4">
       <NuxtLink to="/" class="flex items-center space-x-2">
-        <img src="/" alt="OVIS237 Logo" class="h-10 w-auto">
+        <img src="/images/background/logo.png" alt="StreamFacile" class="h-12 w-auto ">
       
       </NuxtLink>
 
@@ -11,7 +11,7 @@
           <NuxtLink 
             to="#abonnements" 
             class="font-semibold" 
-            :class="{ 'text-blue-600 underline': isActiveLink('#abonnements'), 'text-gray-700 hover:text-darkblue dark:text-gray-300 dark:hover:text-white': !isActiveLink('#abonnements') }"
+            :class="{ 'text-blue-600 underline': isActiveLink('#abonnements'), 'text-white hover:text-darkblue dark:text-gray-300 dark:hover:text-white': !isActiveLink('#abonnements') }"
           >
             abonnements
           </NuxtLink>
@@ -22,7 +22,7 @@
         <li>
           <NuxtLink 
             to="#about-us" 
-            class="font-semibold" 
+            class="font-semibold " 
             :class="{ 'text-blue-600 underline': isActiveLink('#about-us'), 'text-gray-700 hover:text-darkblue dark:text-gray-300 dark:hover:text-white': !isActiveLink('#about-us') }"
           >
              A propos

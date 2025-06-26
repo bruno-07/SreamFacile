@@ -23,7 +23,9 @@
           <li v-for="item in cartStore.items" :key="item.id" class="flex flex-col sm:flex-row items-center justify-between py-3 border-b dark:border-gray-700 last:border-b-0">
             <div class="flex-grow text-center sm:text-left mb-2 sm:mb-0">
               <p class="font-semibold text-lg text-darkblue dark:text-white">{{ item.name }} {{ item.animalEmoji }}</p>
-              <p class="text-gray-600 dark:text-gray-300">{{ item.basePrice }} FCFA/mois</p>
+              <p class="text-gray-600 dark:text-gray-300">
+                {{ item.basePrice }} FCFA/{{ item.billingCycle === 'yearly' ? 'an' : 'mois' }}
+              </p>
             </div>
             <div class="flex items-center space-x-2">
               <label :for="'months-' + item.id" class="text-gray-700 dark:text-gray-300 sr-only sm:not-sr-only">Durée :</label>
@@ -31,9 +33,10 @@
                 :id="'months-' + item.id"
                 :value="item.months"
                 @change="event => updateMonths(item.id, parseInt(event.target.value))"
-                class="p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 text-base dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                :disabled="item.billingCycle === 'yearly'" class="p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 text-base dark:bg-gray-700 dark:border-gray-600 dark:text-white"
               >
-                <option v-for="n in 12" :key="n" :value="n">{{ n }} mois</option>
+                <option v-if="item.billingCycle === 'yearly'" :value="12">1 an</option>
+                <option v-else v-for="n in 12" :key="n" :value="n">{{ n }} mois</option>
               </select>
               <span class="font-bold text-darkblue dark:text-white min-w-[80px] text-right">{{ item.totalPrice }} FCFA</span>
               <button @click="removeItem(item.id)" class="ml-2 p-2 text-red-600 hover:bg-red-100 rounded-full dark:hover:bg-red-900 dark:text-red-400 focus:outline-none">
@@ -64,10 +67,10 @@
 <script setup>
 import { ref, computed } from 'vue';
 import { useCartStore } from '@/stores/cart';
-import { useNotificationStore } from '@/stores/notification'; // NEW: Import notification store
+import { useNotificationStore } from '@/stores/notification';
 
 const cartStore = useCartStore();
-const notificationStore = useNotificationStore(); // NEW: Initialize notification store
+const notificationStore = useNotificationStore();
 const isOpen = ref(false);
 
 const closeModal = () => {
@@ -80,14 +83,11 @@ const openModal = () => {
 
 const updateMonths = (itemId, newMonths) => {
   cartStore.updateItemMonths(itemId, newMonths);
-  // NEW: Notify on update
   notificationStore.showNotification('Durée de l\'abonnement mise à jour !', 'success');
 };
 
 const removeItem = (itemId) => {
-  // REMOVED: The `confirm` dialog
   cartStore.removeItem(itemId);
-  // NEW: Notify on removal
   notificationStore.showNotification('Abonnement supprimé du panier.', 'info');
 };
 

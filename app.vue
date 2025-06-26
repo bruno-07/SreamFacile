@@ -1,4 +1,7 @@
 <template>
+ 
+
+
   <div class="min-h-screen flex flex-col relative">
     <AppHeader />
     
@@ -10,19 +13,21 @@
 
         <section id="abonnements" class="py-16 bg-lightblue">
           <div class="container mx-auto px-4">
-            <h2 class="text-4xl font-bold text-center text-darkblue mb-12">Nos Abonnements Streaming</h2>
+            <h2 class="text-4xl md:text-5xl font-extrabold text-center text-blue-800 mb-12 tracking-tight drop-shadow-sm">
+              Nos Abonnements <span class="text-blue-500">Streaming</span>
+            </h2>
             <StreamingPlatformCarousel />
           </div>
         </section>
 
        
                       <!-- Page À propos - NovaAccess -->
-        <section id="about-us" class="bg-white text-gray-800 py-16 px-6 md:px-16">
+        <section id="about-us" class="bg-blue-200 text-gray-800 py-16 px-6 md:px-16">
           <div class="max-w-5xl mx-auto">
             <!-- Titre principal -->
-            <h1 class="text-4xl font-bold text-blue-700 mb-4">À propos de <span class="text-gray-900">NovaAccess</span></h1>
+            <h1 class="text-4xl font-bold text-blue-700 mb-4">À propos de <span class="text-white">Stream</span><span class="text-[#b62630]">Facile</span></h1>
             <p class="text-lg text-gray-600 mb-10">
-              Chez <strong>NovaAccess</strong>, nous croyons que chaque abonnement est bien plus qu’un simple service :
+              Chez <span class="text-white">Stream</span><span class="text-[#b62630]">Facile</span>, nous croyons que chaque abonnement est bien plus qu’un simple service :
               c’est un engagement de confiance, de qualité et de transparence.
             </p>
 
@@ -73,28 +78,16 @@
             </div>
 
             <!-- Témoignages -->
-            <div class="mb-12">
-              <h2 class="text-2xl font-semibold text-blue-600 mb-2">✨ Ce que disent nos utilisateurs</h2>
-              <div class="space-y-6 mt-4">
-                <blockquote class="bg-white border-l-4 border-blue-500 pl-4 italic text-gray-700">
-                  "Avec NovaAccess, j’ai enfin trouvé une plateforme qui tient ses promesses. Le service client est incroyable, et tout est clair dès le départ."
-                  <br /><span class="block font-semibold mt-2">— Mélanie K., abonnée depuis 2024</span>
-                </blockquote>
-                <blockquote class="bg-white border-l-4 border-blue-500 pl-4 italic text-gray-700">
-                  "Simple, fiable, humain. C’est rare, mais NovaAccess l’a fait."
-                  <br /><span class="block font-semibold mt-2">— Yann D., utilisateur pro</span>
-                </blockquote>
-              </div>
-            </div>
-
+           
             <!-- Contact -->
             <div class="text-center">
               <p class="text-lg text-gray-700 mb-4">📩 Envie d’en savoir plus ?</p>
-              <a href="/contact" class="inline-block bg-blue-600 text-white font-medium py-3 px-6 rounded-lg hover:bg-blue-700 transition">
+              <NuxtLink to="https://wa.me/+237699115314" class="inline-block bg-blue-600 text-white font-medium py-3 px-6 rounded-lg hover:bg-blue-700 transition">
                 Nous contacter
-              </a>
+              </NuxtLink>
             </div>
           </div>
+          
         </section>
 
           
@@ -103,12 +96,13 @@
       </main>
     </div>
 
-    <footer class="bg-gray-800 text-white py-6 text-center relative z-10">
+    <footer class="bg-gray-500 text-white py-6 text-center relative z-10">
       <div class="container mx-auto">
-        <p>&copy; {{ new Date().getFullYear() }} OVIS237. Tous droits réservés.</p>
+        <p>&copy; {{ new Date().getFullYear() }} <span class="text-white">Stream</span><span class="text-[#b62630]">Facile</span>. Tous droits réservés.</p>
       </div>
     </footer>
   </div>
+
 </template>
 
 <script setup>
