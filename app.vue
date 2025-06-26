@@ -14,7 +14,7 @@
         <section id="abonnements" class="py-16 bg-lightblue">
           <div class="container mx-auto px-4">
             <h2 class="text-4xl md:text-5xl font-extrabold text-center text-blue-800 mb-12 tracking-tight drop-shadow-sm">
-              Nos Abonnements <span class="text-blue-500">Streaming</span>
+              Nos Abonnements <span class="text-blue-500">premium</span>
             </h2>
             <StreamingPlatformCarousel />
           </div>
